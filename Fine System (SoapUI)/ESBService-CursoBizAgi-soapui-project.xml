@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="538e1080-969b-414b-ad2b-61c0b8671c80" activeEnvironment="Default" name="ESBService-CursoBizAgi" resourceRoot="" soapui-version="5.5.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="0072479f-4966-48da-a4dc-db46b7a51f10" wsaVersion="NONE" name="ESBSoap" type="wsdl" bindingName="{http://localhost:8080/FineSystem/ESBServices.asmx}ESBSoap" soapVersion="1_1" anonymous="optional" definition="http://localhost:2960/ESBServices.asmx?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://localhost:2960/ESBServices.asmx</con:endpoint></con:endpoints><con:operation id="cd98d932-91d5-47b6-98f1-c0089e4d99db" isOneWay="false" action="http://localhost:8080/FineSystem/ESBServices.asmx/OutstandingFine" name="OutstandingFine" bindingOperationName="OutstandingFine" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="0134db7f-b10b-451c-9cc0-6a9992106fbf" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2960/ESBServices.asmx</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:esb="http://localhost:8080/FineSystem/ESBServices.asmx">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <esb:OutstandingFine>\r
+         <!--Optional:-->\r
+         <esb:student>\r
+            <!--Optional:-->\r
+            <esb:studentName>?</esb:studentName>\r
+            <!--Optional:-->\r
+            <esb:email>?</esb:email>\r
+            <!--Optional:-->\r
+            <esb:code>?</esb:code>\r
+            <!--Optional:-->\r
+            <esb:faculty>?</esb:faculty>\r
+            <!--Optional:-->\r
+            <esb:phone>?</esb:phone>\r
+         </esb:student>\r
+      </esb:OutstandingFine>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://localhost:8080/FineSystem/ESBServices.asmx/OutstandingFine"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" id="0204e449-408c-4d1e-8b4c-8e05ef3d8cb6" wsaVersion="NONE" name="ESBSoap12" type="wsdl" bindingName="{http://localhost:8080/FineSystem/ESBServices.asmx}ESBSoap12" soapVersion="1_2" anonymous="optional" definition="http://localhost:2960/ESBServices.asmx?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:2960/ESBServices.asmx?wsdl"><con:part><con:url>http://localhost:2960/ESBServices.asmx?wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://localhost:8080/FineSystem/ESBServices.asmx" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://localhost:8080/FineSystem/ESBServices.asmx" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation>Web service example that validates if an student has any outstanding fine. This webService is just an example used  to show how to invoke WebServices from BizAgi Studio.</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://localhost:8080/FineSystem/ESBServices.asmx">
+      <s:element name="OutstandingFine">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="student" type="tns:Student"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Student">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="studentName" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="code" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="faculty" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="phone" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="OutstandingFineResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OutstandingFineResult" type="tns:FineResponse"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="FineResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="OutstandingFine" type="s:boolean"/>
+          <s:element minOccurs="1" maxOccurs="1" name="CurrentFine" type="s:int"/>
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="OutstandingFineSoapIn">
+    <wsdl:part name="parameters" element="tns:OutstandingFine"/>
+  </wsdl:message>
+  <wsdl:message name="OutstandingFineSoapOut">
+    <wsdl:part name="parameters" element="tns:OutstandingFineResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="ESBSoap">
+    <wsdl:operation name="OutstandingFine">
+      <wsdl:documentation>Returns a Fine Response with information related with the outstanding fine of the student</wsdl:documentation>
+      <wsdl:input message="tns:OutstandingFineSoapIn"/>
+      <wsdl:output message="tns:OutstandingFineSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ESBSoap" type="tns:ESBSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="OutstandingFine">
+      <soap:operation soapAction="http://localhost:8080/FineSystem/ESBServices.asmx/OutstandingFine" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ESBSoap12" type="tns:ESBSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="OutstandingFine">
+      <soap12:operation soapAction="http://localhost:8080/FineSystem/ESBServices.asmx/OutstandingFine" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ESB">
+    <wsdl:documentation>Web service example that validates if an student has any outstanding fine. This webService is just an example used  to show how to invoke WebServices from BizAgi Studio.</wsdl:documentation>
+    <wsdl:port name="ESBSoap" binding="tns:ESBSoap">
+      <soap:address location="http://localhost:2960/ESBServices.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="ESBSoap12" binding="tns:ESBSoap12">
+      <soap12:address location="http://localhost:2960/ESBServices.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:2960/ESBServices.asmx</con:endpoint></con:endpoints><con:operation id="3656336b-dde3-4e72-b75a-8df528904e74" isOneWay="false" action="http://localhost:8080/FineSystem/ESBServices.asmx/OutstandingFine" name="OutstandingFine" bindingOperationName="OutstandingFine" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="38bcf389-86de-43e0-a370-c3f6e3279418" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:2960/ESBServices.asmx</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:esb="http://localhost:8080/FineSystem/ESBServices.asmx">\r
+   <soap:Header/>\r
+   <soap:Body>\r
+      <esb:OutstandingFine>\r
+         <!--Optional:-->\r
+         <esb:student>\r
+            <!--Optional:-->\r
+            <esb:studentName>GERMAN</esb:studentName>\r
+            <!--Optional:-->\r
+            <esb:email>GermanGJ@Hotmail.com</esb:email>\r
+            <!--Optional:-->\r
+            <esb:code>100215118</esb:code>\r
+            <!--Optional:-->\r
+            <esb:faculty>1</esb:faculty>\r
+            <!--Optional:-->\r
+            <esb:phone>30063584646894</esb:phone>\r
+         </esb:student>\r
+      </esb:OutstandingFine>\r
+   </soap:Body>\r
+</soap:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://localhost:8080/FineSystem/ESBServices.asmx/ESBSoap/OutstandingFineRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
